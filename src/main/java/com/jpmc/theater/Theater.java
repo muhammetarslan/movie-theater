@@ -4,15 +4,22 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Theater {
 
-    LocalDateProvider provider;
+    private LocalDateProvider provider;
+
+    public List<Showing> getSchedule() {
+        return schedule;
+    }
+
     private List<Showing> schedule;
 
     public Theater(LocalDateProvider provider) {
         this.provider = provider;
+
 
         Movie spiderMan = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1);
         Movie turningRed = new Movie("Turning Red", Duration.ofMinutes(85), 11, 0);
@@ -67,8 +74,4 @@ public class Theater {
         }
     }
 
-    public static void main(String[] args) {
-        Theater theater = new Theater(LocalDateProvider.singleton());
-        theater.printSchedule();
-    }
 }
