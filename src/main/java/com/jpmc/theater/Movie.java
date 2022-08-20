@@ -1,5 +1,7 @@
 package com.jpmc.theater;
 
+import com.google.gson.annotations.Expose;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -7,16 +9,21 @@ import java.util.Objects;
 
 public class Movie {
     private static int MOVIE_CODE_SPECIAL = 1;
-
     private String title;
     private String description;
-    private Duration runningTime;
+    private transient Duration runningTime;
+    private String runningTimeRaw;
     private double ticketPrice;
     private int specialCode;
+
+    public String getRunningTimeRaw() {
+        return runningTimeRaw;
+    }
 
     public Movie(String title, Duration runningTime, double ticketPrice, int specialCode) {
         this.title = title;
         this.runningTime = runningTime;
+        runningTimeRaw = runningTime.toString();
         this.ticketPrice = ticketPrice;
         this.specialCode = specialCode;
     }
@@ -27,6 +34,7 @@ public class Movie {
 
     public Duration getRunningTime() {
         return runningTime;
+
     }
 
     public double getTicketPrice() {

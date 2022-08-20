@@ -5,12 +5,18 @@ import java.time.LocalDateTime;
 public class Showing {
     private Movie movie;
     private int sequenceOfTheDay;
-    private LocalDateTime showStartTime;
+    private transient LocalDateTime showStartTime;
+    private String showStartTimeRaw;
+
+    public String getShowStartTimeRaw() {
+        return showStartTimeRaw;
+    }
 
     public Showing(Movie movie, int sequenceOfTheDay, LocalDateTime showStartTime) {
         this.movie = movie;
         this.sequenceOfTheDay = sequenceOfTheDay;
         this.showStartTime = showStartTime;
+        showStartTimeRaw = showStartTime.toString();
     }
 
     public Movie getMovie() {

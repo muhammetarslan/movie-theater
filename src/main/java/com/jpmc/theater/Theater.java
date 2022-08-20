@@ -1,5 +1,8 @@
 package com.jpmc.theater;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,8 +22,6 @@ public class Theater {
 
     public Theater(LocalDateProvider provider) {
         this.provider = provider;
-
-
         Movie spiderMan = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1);
         Movie turningRed = new Movie("Turning Red", Duration.ofMinutes(85), 11, 0);
         Movie theBatMan = new Movie("The Batman", Duration.ofMinutes(95), 9, 0);
@@ -55,6 +56,10 @@ public class Theater {
                 System.out.println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle() + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee())
         );
         System.out.println("===================================================");
+    }
+    public void printScheduleInJson() {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(schedule));
     }
 
     public String humanReadableFormat(Duration duration) {
